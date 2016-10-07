@@ -12,6 +12,9 @@
           case "d": this.player.nextVideo(); break;
           case "a": this.player.previousVideo(); break;
         }
+      },
+      set_volume: function(vol) {
+        this.player.setVolume(vol);
       }
     }
   };

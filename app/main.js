@@ -38,6 +38,12 @@ function createWindow () {
   globalShortcut.register("CommandOrControl+Shift+Space", function() {
     win.webContents.send("keyboard-command", " ");
   });
+  globalShortcut.register("CommandOrControl+Shift+R", function() {
+    win.webContents.send("keyboard-command", "r");
+  });
+  globalShortcut.register("CommandOrControl+Shift+F", function() {
+    win.webContents.send("keyboard-command", "f");
+  });
 
   // Emitted when the window is closed.
   win.on('closed', () => {

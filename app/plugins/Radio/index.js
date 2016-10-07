@@ -52,6 +52,9 @@
           case " ": this.select_station(this.current_hovered); break;
         }
       },
+      set_volume: function(vol) {
+        document.getElementById("radio-audio").firstChild.volume = vol / 100.0;
+      },
       select_station: function(id) {
         this.current_selected = id;
         this.current_hovered = id;

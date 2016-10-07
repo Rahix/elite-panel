@@ -53,7 +53,8 @@ fs.readdir("plugins", function(err, items) {
     el: "#elite-panel",
     router: router,
     data: {
-      plugins: items
+      plugins: items,
+      volume: 50
     }
   });
 
@@ -70,17 +71,41 @@ fs.readdir("plugins", function(err, items) {
         vm.$router.push(routes[new_index].path);
       }
     };
-    switch(e.key) {
-      case "e": switch_route(1); break;
-      case "q": switch_route(-1); break;
-      default: // Send to active route
-        vm.$route.matched[0].instances.default.keyboard(e);
-        break;
+    // Make sure no input element is currently focused
+    if(document.querySelector(":focus") === null) {
+      switch(e.key) {
+        // Next Panel
+        case "e": switch_route(1); break;
+        // Previous Panel
+        case "q": switch_route(-1); break;
+        // Volume +
+        case "r":
+          vm.volume = Math.min(vm.volume + 10, 100);
+          // Check wether the method exists
+          if(vm.$route.matched[0].instances.default.set_volume) {
+            vm.$route.matched[0].instances.default.set_volume(vm.volume);
+          }
+          break;
+        // Volume -
+        case "f":
+          vm.volume = Math.max(vm.volume - 10, 0);
+          // Check wether the method exists
+          if(vm.$route.matched[0].instances.default.set_volume) {
+            vm.$route.matched[0].instances.default.set_volume(vm.volume);
+          }
+          break;
+        // Send to active route
+        default:
+          // Check wether the method exists
+          if(vm.$route.matched[0].instances.default.keyboard) {
+            vm.$route.matched[0].instances.default.keyboard(e);
+          }
+          break;
+      }
     }
   }
 });
 
 ipcRenderer.on("keyboard-command", function(ev, key) {
-  console.log(key);
   window.onkeydown({key: key});
 })

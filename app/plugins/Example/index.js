@@ -1,9 +1,9 @@
 (function() {
   module.exports = {
-    template: "<div>Cannopy Breach detected!</div>",
+    template: "<input type='text'></input>",
     methods: {
       keyboard: function(ev) {
-        console.log(ev);
+        console.log(document.querySelector(":focus"));
       }
     }
 
