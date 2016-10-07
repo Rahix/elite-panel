@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link href="css/style.css" rel="stylesheet"></link>
+  </head>
+  <body class="stripes">
+    <div id="elite-panel">
+      <hr />
+      <nav>
+        <ul>
+          <router-link v-for="route in $router.options.routes" :to="route.path" tag="li"><a>{{route.display_name}}</a></router-link>
+        </ul>
+      </nav>
+      <hr class="thick"/>
+      <div class="content">
+        <router-view></router-view>
+      </div>
+    </div>
+    <div style="display: none;">
+      <!-- Builtin Templates -->
+      <div id="option-template">
+        <h1 style="text-align: center">Not implemented yet!</h1>
+      </div>
+      <div id="close-template">
+        <div style="text-align: center">
+          <h1>Do you really want to close elite-panel?</h1>
+          <br />
+          <span>(All settings will be lost!)</span>
+          <br />
+          <br />
+          <input type="button" v-on:mouseup="close()" value="Do it!"></input>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

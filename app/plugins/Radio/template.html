@@ -1,0 +1,11 @@
+<div style="display: flex; flex-direction: row; vertical-align: center; height: 100%; justify-content: space-around; align-items: stretch; width: 100%">
+  <ul style="width: 30vw">
+    <li v-for="(station, id) in stations"
+        v-bind:class="{ hovered: (id == current_hovered), selected: (id == current_selected) }"
+        v-on:mouseup="select_station(id)">{{station.name}}</li>
+  </ul>
+  <div class="vertical-separator"></div>
+  <img src="res/galnet.svg" style="width: 50vw" />
+  <span id="radio-audio">
+  </span>
+</div>

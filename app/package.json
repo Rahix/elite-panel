@@ -1,0 +1,16 @@
+{
+  "name": "elite-panel",
+  "version": "0.1.0",
+  "description": "A side panel for Elite Dangerous",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rahix",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.0.1",
+    "vue-router": "^2.0.0",
+    "youtube-player": "^3.0.4"
+  }
+}
