@@ -6,13 +6,14 @@ let win
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({width: 1024, height: 720, frame: true})
+  win = new BrowserWindow({width: 1024, height: 720, frame: true, title: "elite-panel"})
 
   win.maximize();
   //win.setMenu(null);
 
   // and load the index.html of the app.
   win.loadURL(`file://${__dirname}/index.html`);
+  win.setTitle("elite-panel");
 
   // Open the DevTools.
   //win.webContents.openDevTools()

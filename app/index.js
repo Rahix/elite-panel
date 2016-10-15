@@ -7,6 +7,7 @@ var fs = require("fs");
 
 var vm;
 
+var overlay_cb;
 
 fs.readdir("plugins", function(err, items) {
   var routes = [];
@@ -54,7 +55,22 @@ fs.readdir("plugins", function(err, items) {
     router: router,
     data: {
       plugins: items,
-      volume: 50
+      volume: 50,
+      overlay_text: "",
+      overlay_vis: false,
+    },
+    methods: {
+      overlay: function(text, duration) {
+        this.overlay_text = text;
+        this.overlay_vis = true;
+        if(overlay_cb) {
+          window.clearTimeout(overlay_cb);
+        }
+        var mdl = this;
+        overlay_cb = window.setTimeout(function (){
+          mdl.overlay_vis = false;
+        }, duration*1000);
+      }
     }
   });
 
@@ -69,10 +85,24 @@ fs.readdir("plugins", function(err, items) {
       }, routes) + o;
       if(new_index >= 0 && new_index < routes.length) {
         vm.$router.push(routes[new_index].path);
+        if(vm.$route.matched[0].instances.default.set_volume) {
+          vm.$route.matched[0].instances.default.set_volume(vm.volume);
+        }
       }
     };
     // Make sure no input element is currently focused
-    if(document.querySelector(":focus") === null) {
+    var focus = document.querySelector(":focus");
+    if(focus === null || focus.tagName != "input" || focus.type != "text") {
+      var v_delta = 20;
+      if(vm.volume < 61) {
+        v_delta = 10;
+      }
+      if(vm.volume < 31) {
+        v_delta = 5;
+      }
+      if(vm.volume < 6) {
+        v_delta = 1;
+      }
       switch(e.key) {
         // Next Panel
         case "e": switch_route(1); break;
@@ -80,7 +110,8 @@ fs.readdir("plugins", function(err, items) {
         case "q": switch_route(-1); break;
         // Volume +
         case "r":
-          vm.volume = Math.min(vm.volume + 10, 100);
+          vm.volume = Math.min(vm.volume + v_delta, 100);
+          vm.overlay("Volume " + vm.volume + "%", 0.5);
           // Check wether the method exists
           if(vm.$route.matched[0].instances.default.set_volume) {
             vm.$route.matched[0].instances.default.set_volume(vm.volume);
@@ -88,7 +119,8 @@ fs.readdir("plugins", function(err, items) {
           break;
         // Volume -
         case "f":
-          vm.volume = Math.max(vm.volume - 10, 0);
+          vm.volume = Math.max(vm.volume - v_delta, 0);
+          vm.overlay("Volume " + vm.volume + "%", 0.5);
           // Check wether the method exists
           if(vm.$route.matched[0].instances.default.set_volume) {
             vm.$route.matched[0].instances.default.set_volume(vm.volume);

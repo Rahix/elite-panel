@@ -1,6 +1,6 @@
 (function() {
   module.exports = {
-    template: '<iframe width="560" height="315" style="width: 100%; height: 100%" id="obsidian-iframe" src="https://www.youtube.com/embed/sSQgGzo2S6Q?list=UUjgBlzLxsgbVuHfZPe0AeIg&autoplay=1&enablejsapi=1&controls=0" frameborder="0" allowfullscreen></iframe>',
+    template: '<iframe width="560" height="315" style="width: 100%; height: 100%" id="obsidian-iframe" src="https://www.youtube.com/embed/videoseries?list=UUjgBlzLxsgbVuHfZPe0AeIg&autoplay=1&enablejsapi=1&controls=0" frameborder="0" allowfullscreen></iframe>',
     mounted: function() {
       this.player = new require("youtube-player")("obsidian-iframe");
       this.playing = true;

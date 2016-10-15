@@ -2,11 +2,12 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>elite-panel</title>
     <link href="css/style.css" rel="stylesheet"></link>
   </head>
   <body class="stripes">
     <div id="elite-panel">
+      <div v-bind:class="{overlay: true, visible: overlay_vis}" v-html="overlay_text"></div>
       <hr />
       <nav>
         <ul>

@@ -25,16 +25,8 @@
             url: "http://laveradio.out.airtime.pro:8000/laveradio_a"
           },
           {
-            name: "Q-Music",
-            url: "http://icecast-qmusic.cdp.triple-it.nl/Qmusic_nl_live_96.mp3"
-          },
-          {
-            name: "538 Party",
-            url: "http://vip-icecast.538.lw.triple-it.nl/WEB16_MP3"
-          },
-          {
-            name: "538 Hitzone",
-            url: "http://vip-icecast.538.lw.triple-it.nl/WEB11_MP3"
+            name: "Dylan Radio",
+            url: "http://173.192.198.244:8138/;"
           }
         ],
         current_hovered: 0,
@@ -56,10 +48,16 @@
         document.getElementById("radio-audio").firstChild.volume = vol / 100.0;
       },
       select_station: function(id) {
+        var vol = 1.0;
+        if(document.getElementById("radio-audio").firstChild) {
+          vol = document.getElementById("radio-audio").firstChild.volume;
+        }
         this.current_selected = id;
         this.current_hovered = id;
         var audio = document.getElementById("radio-audio");
         audio.innerHTML = "<audio autoplay><source src=\"" + this.stations[id].url + "\" type=\"audio/mpeg\"></source></audio>";
+        // Reset volume after station change
+        document.getElementById("radio-audio").firstChild.volume = vol;
       }
     }
 
