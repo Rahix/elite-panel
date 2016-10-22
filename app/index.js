@@ -93,15 +93,25 @@ fs.readdir("plugins", function(err, items) {
     // Make sure no input element is currently focused
     var focus = document.querySelector(":focus");
     if(focus === null || focus.tagName != "input" || focus.type != "text") {
-      var v_delta = 20;
+      var v_delta_pos = 20;
+      var v_delta_neg = 20;
+      if(vm.volume < 60) {
+        v_delta_pos = 10;
+      }
       if(vm.volume < 61) {
-        v_delta = 10;
+        v_delta_neg = 10;
+      }
+      if(vm.volume < 30) {
+        v_delta_pos = 5;
       }
       if(vm.volume < 31) {
-        v_delta = 5;
+        v_delta_neg = 5;
+      }
+      if(vm.volume < 5) {
+        v_delta_pos = 1;
       }
       if(vm.volume < 6) {
-        v_delta = 1;
+        v_delta_neg = 1;
       }
       switch(e.key) {
         // Next Panel
@@ -110,7 +120,7 @@ fs.readdir("plugins", function(err, items) {
         case "q": switch_route(-1); break;
         // Volume +
         case "r":
-          vm.volume = Math.min(vm.volume + v_delta, 100);
+          vm.volume = Math.min(vm.volume + v_delta_pos, 100);
           vm.overlay("Volume " + vm.volume + "%", 0.5);
           // Check wether the method exists
           if(vm.$route.matched[0].instances.default.set_volume) {
@@ -119,7 +129,7 @@ fs.readdir("plugins", function(err, items) {
           break;
         // Volume -
         case "f":
-          vm.volume = Math.max(vm.volume - v_delta, 0);
+          vm.volume = Math.max(vm.volume - v_delta_neg, 0);
           vm.overlay("Volume " + vm.volume + "%", 0.5);
           // Check wether the method exists
           if(vm.$route.matched[0].instances.default.set_volume) {

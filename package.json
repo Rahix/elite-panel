@@ -20,7 +20,9 @@
     ]
   },
   "scripts": {
-    "start": "cd app/; electron ./"
+    "start": "cd app/; electron ./",
+    "build-lnx": "build -l zip",
+    "build-win": "build --win nsis"
   },
   "author": "Rahix",
   "license": "MIT",
