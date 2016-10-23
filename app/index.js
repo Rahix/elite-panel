@@ -85,7 +85,7 @@ fs.readdir("plugins", function(err, items) {
       }, routes) + o;
       if(new_index >= 0 && new_index < routes.length) {
         vm.$router.push(routes[new_index].path);
-        if(vm.$route.matched[0].instances.default.set_volume) {
+        if(vm.$route.matched[0].instances.default && vm.$route.matched[0].instances.default.set_volume) {
           vm.$route.matched[0].instances.default.set_volume(vm.volume);
         }
       }

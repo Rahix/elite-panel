@@ -11,10 +11,10 @@ html {
 body {
   /* Font Settings */
   font-family: "EuroCaps";
-  color: #e24f00;
+  color: var(--orange);
   font-weight: bold;
   font-size: 1.5vw;
-  text-shadow: 0 0 0.07vw #e24f00;
+  text-shadow: 0 0 0.07vw var(--orange);
 
   padding: 0;
   margin: 0;
@@ -24,7 +24,7 @@ body {
 }
 
 body.stripes {
-  background: repeating-linear-gradient(#000000 0px, #3b0e00 0.3vw, #000000 0.6vw); /*751c00*/
+  background: repeating-linear-gradient(#000000 0px, var(--stripe-color) 0.3vw, #000000 0.6vw); /*751c00*/
 }
 
 /* For fading out towards the sides */
@@ -44,7 +44,7 @@ nav {
   margin: 0;
   padding: 0;
   font-size: 1.60vw; /* 25px */
-  text-shadow: 0 0 0.1vw #e24f00;
+  text-shadow: 0 0 0.1vw var(--orange);
   height: 2vw;
 }
 
@@ -72,7 +72,7 @@ nav ul li {
 nav ul li.router-link-active {
   color: #000000;
   text-shadow: 0 0 0.1vw #000;
-  background: #e24f00;
+  background: var(--orange);
 }
 
 div.content {
@@ -82,7 +82,7 @@ div.content {
 
 /* Remove link styles */
 nav ul li a {
-  color: #e24f00;
+  color: var(--orange);
   text-decoration: none;
 }
 
@@ -96,12 +96,12 @@ hr {
   margin-top: 3px;
   height: 1px;
   width: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(226, 79, 0, 1) 33%, rgba(226, 79, 0, 1) 66%, rgba(0, 0, 0, 0));
+  background: linear-gradient(rgba(0, 0, 0, 0) 0%, var(--orange) 33%, var(--orange) 66%, rgba(0, 0, 0, 0));
 }
 
 hr.thick {
   height: 4px;
-  background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(226, 79, 0, 1) 33%, rgba(226, 79, 0, 1) 66%, rgba(0, 0, 0, 0));
+  background: linear-gradient(rgba(0, 0, 0, 0) 0%, var(--orange) 33%, var(--orange) 66%, rgba(0, 0, 0, 0));
 }
 
 /*********
@@ -116,12 +116,12 @@ div.overlay {
   padding-bottom: 1vw;
   padding-left: 5vw;
   padding-right: 5vw;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #933300 50%, rgba(0, 0, 0, 0));
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, var(--overlay-bg) 50%, rgba(0, 0, 0, 0));
   transform: translate(-50%, -50%);
 
   /* BORDERS */
-  border-top: 2px #e24f00 solid;
-  border-bottom: 2px #e24f00 solid;
+  border-top: 2px var(--orange) solid;
+  border-bottom: 2px var(--orange) solid;
 
   /* FADING */
   transition: opacity 3s;
@@ -170,8 +170,8 @@ div.content ul {
 
 div.content ul li {
   font-size: 1.6vw;
-  text-shadow: 0 0 0.1vw #e24f00;
-  background: rgba(156, 51, 0, 0.52);
+  text-shadow: 0 0 0.1vw var(--orange);
+  background: var(--list-bg);/*rgba(156, 51, 0, 0.52);*/
   margin-top: 1vh;
   padding: 1vw;
   width: 100%;
@@ -179,15 +179,15 @@ div.content ul li {
 }
 
 div.content ul li:hover, div.content ul li.hovered {
-  background: rgba(210, 69, 0, 0.52);
+  background: var(--list-bg-hover);
 }
 
 div.content ul li:active {
-  background: rgba(210, 69, 0, 0.74);
+  background: var(--list-bg-active);
 }
 
 div.content ul li.selected {
-  background: #e24f00;
+  background: var(--orange);
   color: #000000;
   text-shadow: 0 0 0.1vw #000;
 }
@@ -199,9 +199,9 @@ div.content ul li.selected {
 div.vertical-separator {
   width: 1px;
   height: 100%;
-  background-color: #e24f00;
+  background-color: var(--orange);
 }
 
 h1 {
-  text-shadow: 0 0 0.14vw #e24f00;
+  text-shadow: 0 0 0.14vw var(--orange);
 }
