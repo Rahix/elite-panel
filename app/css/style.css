@@ -16,6 +16,8 @@ body {
   font-size: 1.5vw;
   text-shadow: 0 0 0.07vw var(--orange);
 
+  overflow: hidden;
+
   padding: 0;
   margin: 0;
   width: 100%;
@@ -119,6 +121,8 @@ div.overlay {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, var(--overlay-bg) 50%, rgba(0, 0, 0, 0));
   transform: translate(-50%, -50%);
 
+  pointer-events: none;
+
   /* BORDERS */
   border-top: 2px var(--orange) solid;
   border-bottom: 2px var(--orange) solid;
@@ -174,7 +178,6 @@ div.content ul li {
   background: var(--list-bg);/*rgba(156, 51, 0, 0.52);*/
   margin-top: 1vh;
   padding: 1vw;
-  width: 100%;
   cursor: pointer;
 }
 

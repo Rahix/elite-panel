@@ -11,26 +11,60 @@ var overlay_cb;
 
 fs.readdir("plugins", function(err, items) {
   var routes = [];
+  var plugins = [];
   // Add plugins
   items.forEach(function(plugin) {
-    routes.push({
-      display_name: plugin,
-      path: "/" + plugin,
-      component: require("./plugins/" + plugin + "/index.js")
-    });
+    var plugin = require("./plugins/" + plugin + "/index.js");
+    if(plugin.panel) {
+      if(!plugin.component.name) {
+        plugin.component.name = plugin.route;
+      }
+      routes.push({
+        path: "/" + plugin.route,
+        component: plugin.component
+      });
+      plugins.push({
+        name: plugin.name,
+        route: "/" + plugin.route
+      });
+    }
   });
   // Add builtin
   routes.push({
-      display_name: "Options",
-      path: "/Options",
+      path: "/all",
       component: {
-        template: "#option-template"
+        name: "All",
+        template: "#all-template",
+        data: function() {
+          return {
+            current_pl: 0
+          };
+        },
+        methods: {
+          keyboard: function(ev) {
+            switch(ev.key) {
+              case "s": if(this.current_pl < (this.$root.plugins.length - 1)) this.current_pl++; break;
+              case "w": if(this.current_pl > 0) this.current_pl--; break;
+              case " ": this.goto(this.$root.plugins[this.current_pl].route); break;
+            }
+          },
+          goto: function(route) {
+            this.$router.push(route);
+          }
+        }
       }
     },
     {
-      display_name: "Close",
-      path: "/Close",
+      path: "/settings",
       component: {
+        name: "Settings",
+        template: "#settings-template"
+      }
+    },
+    {
+      path: "/close",
+      component: {
+        name: "Close",
         template: "#close-template",
         methods: {
           close: function() {
@@ -47,14 +81,14 @@ fs.readdir("plugins", function(err, items) {
 
 
   var router = new VueRouter({
-    path: "/All",
+    path: "/all",
     routes: routes
   });
   vm = new Vue({
     el: "#elite-panel",
     router: router,
     data: {
-      plugins: items,
+      plugins: plugins,
       volume: 50,
       overlay_text: "",
       overlay_vis: false,
@@ -75,7 +109,7 @@ fs.readdir("plugins", function(err, items) {
   });
 
 
-  router.push("/Radio");
+  router.push("/all");
 
   window.onkeydown = function(e) {
     var switch_route = function(o) {

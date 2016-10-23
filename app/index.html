@@ -14,7 +14,10 @@
       <hr />
       <nav>
         <ul>
-          <router-link v-for="route in $router.options.routes" :to="route.path" tag="li"><a>{{route.display_name}}</a></router-link>
+          <router-link v-for="plugin in plugins" :to="plugin.route" tag="li"><a>{{plugin.name}}</a></router-link>
+          <router-link to="/all" tag="li"><a>All</a></router-link>
+          <router-link to="/settings" tag="li"><a>Settings</a></router-link>
+          <router-link to="/close" tag="li"><a>Close</a></router-link>
         </ul>
       </nav>
       <hr class="thick"/>
@@ -24,7 +27,16 @@
     </div>
     <div style="display: none;">
       <!-- Builtin Templates -->
-      <div id="option-template">
+      <div id="all-template">
+        <div>
+          <ul style="width: 90vw; padding-left: 0; margin-left: auto; margin-right: auto">
+            <li v-for="(plugin, id) in $root.plugins"
+              v-bind:class="{ hovered: (id == current_pl) }"
+              v-on:mouseup="goto(plugin.route)">{{plugin.name}}</li>
+          </ul>
+        </div>
+      </div>
+      <div id="settings-template">
         <h1 style="text-align: center">Not implemented yet!</h1>
       </div>
       <div id="close-template">
