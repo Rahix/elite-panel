@@ -168,11 +168,12 @@ fs.readdir("plugins", function(err, items) {
   window.onkeydown = function(e) {
     var switch_route = function(o) {
       // Get current route
-      var new_index = routes.findIndex(function(el) {
-        return el.path == vm.$route.path;
-      }, routes) + o;
-      if(new_index >= 0 && new_index < routes.length) {
-        vm.$router.push(routes[new_index].path);
+      var nav_routes = vm.visibles.concat({route: "/all"}, {route: "/settings"}, {route: "/close"});
+      var new_index = nav_routes.findIndex(function(el) {
+        return el.route == vm.$route.path;
+      }) + o;
+      if(new_index >= 0 && new_index < nav_routes.length) {
+        vm.$router.push(nav_routes[new_index].route);
         if(vm.$route.matched[0].instances.default && vm.$route.matched[0].instances.default.set_volume) {
           vm.$route.matched[0].instances.default.set_volume(vm.volume);
         }

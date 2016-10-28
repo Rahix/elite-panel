@@ -20,9 +20,9 @@
   };
   exports.apply_matrix = function(color, matrix) {
     return [
-      color[0] * matrix[0][0] + color[1] * matrix[1][0] + color[2] * matrix[2][0],
-      color[0] * matrix[0][1] + color[1] * matrix[1][1] + color[2] * matrix[2][1],
-      color[0] * matrix[0][2] + color[1] * matrix[1][2] + color[2] * matrix[2][2],
+      Math.min(color[0] * matrix[0][0] + color[1] * matrix[1][0] + color[2] * matrix[2][0], 1.0),
+      Math.min(color[0] * matrix[0][1] + color[1] * matrix[1][1] + color[2] * matrix[2][1], 1.0),
+      Math.min(color[0] * matrix[0][2] + color[1] * matrix[1][2] + color[2] * matrix[2][2], 1.0),
     ];
   };
 })()

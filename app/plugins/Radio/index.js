@@ -27,10 +27,6 @@
             {
               name: "Lave Radio",
               url: "http://laveradio.out.airtime.pro:8000/laveradio_a"
-            },
-            {
-              name: "Dylan Radio",
-              url: "http://173.192.198.244:8138/;"
             }
           ],
           current_hovered: 0,
