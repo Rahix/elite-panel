@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>elite-panel</title>
+    <script>var Config = require("./config.js");</script>
     <style id="style-vars">
     </style>
     <script src="styleloader.js"></script>
@@ -11,45 +12,120 @@
   <body class="stripes">
     <div id="elite-panel">
       <div v-bind:class="{overlay: true, visible: overlay_vis}" v-html="overlay_text"></div>
-      <hr />
       <nav>
+        <hr />
         <ul>
-          <router-link v-for="plugin in plugins" :to="plugin.route" tag="li"><a>{{plugin.name}}</a></router-link>
+          <router-link v-for="plugin in visibles" :to="plugin.route" tag="li"><a>{{plugin.name}}</a></router-link>
           <router-link to="/all" tag="li"><a>All</a></router-link>
           <router-link to="/settings" tag="li"><a>Settings</a></router-link>
           <router-link to="/close" tag="li"><a>Close</a></router-link>
         </ul>
+        <hr class="thick"/>
       </nav>
-      <hr class="thick"/>
       <div class="content">
         <router-view></router-view>
       </div>
     </div>
-    <div style="display: none;">
+    <div style="display: none;" id="hidden-els">
       <!-- Builtin Templates -->
       <div id="all-template">
-        <div>
-          <ul style="width: 90vw; padding-left: 0; margin-left: auto; margin-right: auto">
+        <div style="width: 98vw;
+          display: flex;
+          flex-direction: row;
+          height: 100%;
+          justify-content: flex-start;
+          align-items: stretch;
+          align-content: flex-start;
+          ">
+          <ul style="width: 40vw; margin-top: 0;">
             <li v-for="(plugin, id) in $root.plugins"
               v-bind:class="{ hovered: (id == current_pl) }"
-              v-on:mouseup="goto(plugin.route)">{{plugin.name}}</li>
+              v-bind:id="'all-pl-' + id"
+              v-on:mouseup="goto(plugin.route)"
+              style="height: 2vw"
+              >{{plugin.name}}</li>
           </ul>
+          <div class="vertical-separator"></div>
+          <div>
+            <div v-for="(plugin, id) in $root.plugins" style="margin-top: 0.8vh;
+              padding-top: 0.2vh;
+              padding-bottom: 0.2vh;
+              font-size: 1.6vw;
+              height: 2vw;
+              width: 40vw;
+              ">
+              <elite-checkbox :value="plugin.route == visibles[0].route"
+                :highlight="id == current_pl && column == 1"
+                v-on:mouseup="current_pl = id; column = 1; keyboard({key: ' '})">
+              </elite-checkbox>
+              <span style="width: 1vw">&nbsp;</span>
+              <elite-checkbox :value="plugin.route == visibles[1].route"
+                :highlight="id == current_pl && column == 2"
+                v-on:mouseup="current_pl = id; column = 2; keyboard({key: ' '})">
+              </elite-checkbox>
+              <span style="width: 1vw">&nbsp;</span>
+              <elite-checkbox :value="plugin.route == visibles[2].route"
+                :highlight="id == current_pl && column == 3"
+                v-on:mouseup="current_pl = id; column = 3; keyboard({key: ' '})">
+              </elite-checkbox>
+            </div>
+          </div>
         </div>
       </div>
       <div id="settings-template">
-        <h1 style="text-align: center">Not implemented yet!</h1>
+        <div>
+          <h1 style="text-align: center">Colors (Requires Restart)</h1>
+          <table style="width: 100%">
+            <tr>
+              <td> <input type="text" v-model="matrix_a" /> </td>
+              <td> <input type="text" v-model="matrix_b" /> </td>
+              <td> <input type="text" v-model="matrix_c" /> </td>
+            </tr>
+            <tr>
+              <td> <input type="text" v-model="matrix_d" /> </td>
+              <td> <input type="text" v-model="matrix_e" /> </td>
+              <td> <input type="text" v-model="matrix_f" /> </td>
+            </tr>
+            <tr>
+              <td> <input type="text" v-model="matrix_g" /> </td>
+              <td> <input type="text" v-model="matrix_h" /> </td>
+              <td> <input type="text" v-model="matrix_i" /> </td>
+            </tr>
+          </table>
+          <input type="button" value="Apply" v-on:mouseup="apply_colors()"/>
+        </div>
       </div>
       <div id="close-template">
         <div style="text-align: center">
           <h1>Do you really want to close elite-panel?</h1>
           <br />
-          <span>(All settings will be lost!)</span>
-          <br />
           <br />
           <input type="button" v-on:mouseup="close()" value="Do it!"></input>
         </div>
       </div>
+      <!-- Ui Elements -->
+      <div id="checkbox-template">
+        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90" :style='"vertical-align: middle; width: 1.6vw; cursor: pointer;"
+                                                                                                 + "height: 1.6vw; display: inline; fill: "
+                                                                                                 + (highlight? "var(--blue)": "var(--orange)")' v-on:mouseup="$emit('mouseup')">
+          <defs>
+            <filter id="a" x="-.24" width="1.48" y="-.08" height="1.16" color-interpolation-filters="sRGB">
+              <feGaussianBlur stdDeviation="2.773"/>
+            </filter>
+            <filter id="b" x="-.24" width="1.48" y="-.08" height="1.16" color-interpolation-filters="sRGB">
+              <feGaussianBlur stdDeviation="2.773"/>
+            </filter>
+            <filter id="c" x="-.12" width="1.24" y="-.12" height="1.24" color-interpolation-filters="sRGB">
+              <feGaussianBlur stdDeviation="2.311"/>
+            </filter>
+          </defs>
+          <g fill-rule="evenodd" v-html="path">
+          </g>
+        </svg>
+      </div>
     </div>
+    <script>var Vue = require("vue/dist/vue.js");</script>
+    <script src="ui-elements.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

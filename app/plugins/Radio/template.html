@@ -1,4 +1,4 @@
-<div style="display: flex; flex-direction: row; vertical-align: center; height: 100%; justify-content: space-around; align-items: stretch; width: 100%">
+<div style="display: flex; flex-direction: row; height: 100%; align-items: stretch; width: 98vw">
   <ul style="width: 30vw">
     <li v-for="(station, id) in stations"
         v-bind:class="{ hovered: (id == current_hovered), selected: (id == current_selected) }"
@@ -6,24 +6,24 @@
   </ul>
   <div class="vertical-separator"></div>
   <!-- This is the audio vis -->
-  <div style="display: flex; flex-direction: row; align-items: center; height: 100%; justify-content: space-around; align-items: stretch; width: 40vw;">
+  <div style="display: flex; flex-direction: row; align-items: center; height: 100%; justify-content: space-around; align-items: stretch; width: 40vw; margin-left: auto; margin-right: auto;">
     <!-- 16 -->
-    <div id="radio-vis-1" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-2" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-3" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-4" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-5" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-6" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-7" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-8" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-9" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-10" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-11" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-12" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-13" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-14" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-15" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
-    <div id="radio-vis-16" style="background: var(--orange); width: 2vw; align-self: center; height: 1vw;" />
+    <div id="radio-vis-1" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-2" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-3" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-4" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-5" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-6" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-7" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-8" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-9" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-10" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-11" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-12" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-13" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-14" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-15" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="radio-vis-16" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
   </div>
   <!-- <img src="res/galnet.svg" style="width: 50vw" /> -->
   <span id="radio-audio">

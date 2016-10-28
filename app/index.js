@@ -1,4 +1,3 @@
-var Vue = require("vue/dist/vue.js");
 var VueRouter = require("vue-router");
 
 var {ipcRenderer} = require("electron");
@@ -29,23 +28,45 @@ fs.readdir("plugins", function(err, items) {
       });
     }
   });
+  // Get current colors
+  var colors = Config.get("colors", []); // No need for a default value here
   // Add builtin
   routes.push({
       path: "/all",
       component: {
-        name: "All",
+        name: "all",
         template: "#all-template",
         data: function() {
           return {
-            current_pl: 0
+            current_pl: 0,
+            column: 0,
+            visibles: []
           };
+        },
+        beforeMount: function() {
+          this.visibles = this.$root.visibles;
         },
         methods: {
           keyboard: function(ev) {
+            var _this = this;
+            function scrollIntoView(up) {
+              document.getElementById("all-pl-" + _this.current_pl).scrollIntoView(up);
+            }
             switch(ev.key) {
-              case "s": if(this.current_pl < (this.$root.plugins.length - 1)) this.current_pl++; break;
-              case "w": if(this.current_pl > 0) this.current_pl--; break;
-              case " ": this.goto(this.$root.plugins[this.current_pl].route); break;
+              case "s": if(this.current_pl < (this.$root.plugins.length - 1)) this.current_pl++; scrollIntoView(false); break;
+              case "w": if(this.current_pl > 0) this.current_pl--; scrollIntoView(true); break;
+              case "d": if(this.column < 3) this.column++; break;
+              case "a": if(this.column > 0) this.column--; break;
+              case " ": if(this.column == 0) {
+                  this.goto(this.$root.plugins[this.current_pl].route);
+                } else {
+                  Vue.set(this.$root.visibles, this.column - 1, this.$root.plugins[this.current_pl]);
+                  // Update our UI
+                  this.visibles = this.$root.visibles;
+                  // Push config into local storage
+                  Config.set("visibles", this.$root.visibles);
+                }
+                break;
             }
           },
           goto: function(route) {
@@ -57,14 +78,37 @@ fs.readdir("plugins", function(err, items) {
     {
       path: "/settings",
       component: {
-        name: "Settings",
-        template: "#settings-template"
+        name: "settings",
+        template: "#settings-template",
+        data: function() {
+          return {
+            matrix_a: colors[0][0],
+            matrix_b: colors[0][1],
+            matrix_c: colors[0][2],
+            matrix_d: colors[1][0],
+            matrix_e: colors[1][1],
+            matrix_f: colors[1][2],
+            matrix_g: colors[2][0],
+            matrix_h: colors[2][1],
+            matrix_i: colors[2][2]
+          };
+        },
+        methods: {
+          apply_colors: function() {
+            var matrix = [
+              [this.matrix_a, this.matrix_b, this.matrix_c],
+              [this.matrix_d, this.matrix_e, this.matrix_f],
+              [this.matrix_g, this.matrix_h, this.matrix_i]
+            ];
+            Config.set("colors", matrix);
+          }
+        }
       }
     },
     {
       path: "/close",
       component: {
-        name: "Close",
+        name: "close",
         template: "#close-template",
         methods: {
           close: function() {
@@ -77,18 +121,28 @@ fs.readdir("plugins", function(err, items) {
           }
         }
       }
-    });
+    },
+    {
+      path: "*",
+      component: {
+        name: "not_found",
+        template: '<h1 style="text-align: center;">Plugin not found</h1>'
+      }
+    }
+  );
 
 
   var router = new VueRouter({
     path: "/all",
     routes: routes
   });
+  var visibles = Config.get("visibles", [plugins[0], plugins[1], plugins[2]]);
   vm = new Vue({
     el: "#elite-panel",
     router: router,
     data: {
       plugins: plugins,
+      visibles: visibles,
       volume: 50,
       overlay_text: "",
       overlay_vis: false,

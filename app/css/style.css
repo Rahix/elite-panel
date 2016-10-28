@@ -12,17 +12,16 @@ body {
   /* Font Settings */
   font-family: "EuroCaps";
   color: var(--orange);
-  font-weight: bold;
   font-size: 1.5vw;
   text-shadow: 0 0 0.07vw var(--orange);
-
-  overflow: hidden;
 
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 99vh;
+  height: 91vh;
   background: #000000;
+
+  overflow-x: hidden;
 }
 
 body.stripes {
@@ -46,8 +45,17 @@ nav {
   margin: 0;
   padding: 0;
   font-size: 1.60vw; /* 25px */
+  font-weight: bold;
   text-shadow: 0 0 0.1vw var(--orange);
   height: 2vw;
+
+  /* Fixed */
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  width: 100%
 }
 
 nav ul {
@@ -78,8 +86,25 @@ nav ul li.router-link-active {
 }
 
 div.content {
-  width: 100%;
+  width: 100vw;
   height: 92vh;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 0.7vw;
+}
+
+::-webkit-scrollbar-track-piece {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 30%, var(--orange) 40%, var(--orange) 60%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, var(--orange) 20%, var(--orange) 80%, rgba(0, 0, 0, 0) 100%);
 }
 
 /* Remove link styles */
@@ -106,6 +131,12 @@ hr.thick {
   background: linear-gradient(rgba(0, 0, 0, 0) 0%, var(--orange) 33%, var(--orange) 66%, rgba(0, 0, 0, 0));
 }
 
+div.content {
+  margin-top: 4vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
 /*********
  *OVERLAY*
  *********/
@@ -120,6 +151,9 @@ div.overlay {
   padding-right: 5vw;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, var(--overlay-bg) 50%, rgba(0, 0, 0, 0));
   transform: translate(-50%, -50%);
+
+  color: var(--blue);
+  text-shadow: 0 0 0.1vw var(--blue);
 
   pointer-events: none;
 
@@ -141,10 +175,12 @@ div.overlay.visible {
  *INPUT ELEMENTS*
  ****************/
 
+/* Button */
+
 input[type=button] {
   border: 0;
   padding: 0.5vw 1vw;
-  background-color: #e24f00;
+  background-color: var(--orange);
   font-family: "EuroCaps";
   font-size: 1.6vw;
   font-weight: bold;
@@ -153,15 +189,15 @@ input[type=button] {
 
 input[type=button]:focus {
   outline: 0;
-  background-color: #ff5900;
+  background-color: var(--button-focus);
 }
 
 input[type=button]:hover {
-  background-color: #ff5900;
+  background-color: var(--button-focus);
 }
 
 input[type=button]:active {
-  background-color: #b03d00;
+  background-color: var(--button-active);
 }
 
 /******
@@ -170,29 +206,37 @@ input[type=button]:active {
 
 div.content ul {
   list-style-type: none;
+  padding-left: 0;
 }
 
 div.content ul li {
   font-size: 1.6vw;
   text-shadow: 0 0 0.1vw var(--orange);
   background: var(--list-bg);/*rgba(156, 51, 0, 0.52);*/
-  margin-top: 1vh;
-  padding: 1vw;
+  box-shadow: 0 0 0.5vw var(--list-bg);
+  margin-top: 0.8vh;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-top: 0.2vh;
+  padding-bottom: 0.2vh;
   cursor: pointer;
 }
 
 div.content ul li:hover, div.content ul li.hovered {
   background: var(--list-bg-hover);
+  box-shadow: 0 0 0.5vw var(--list-bg-hover);
 }
 
 div.content ul li:active {
   background: var(--list-bg-active);
+  box-shadow: 0 0 1vw var(--list-bg-active);
 }
 
 div.content ul li.selected {
   background: var(--orange);
   color: #000000;
   text-shadow: 0 0 0.1vw #000;
+  box-shadow: 0 0 1vw var(--orange);
 }
 
 /*******
@@ -203,6 +247,9 @@ div.vertical-separator {
   width: 1px;
   height: 100%;
   background-color: var(--orange);
+  box-shadow: 0 0 0.5vw var(--orange);
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
 }
 
 h1 {
