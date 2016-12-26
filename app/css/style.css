@@ -180,7 +180,9 @@ div.overlay.visible {
 input[type=button] {
   border: 0;
   padding: 0.5vw 1vw;
-  background-color: var(--orange);
+  background-color: var(--list-bg);
+  text-shadow: 0 0 0.1vw var(--orange);
+  color: var(--orange);
   font-family: "EuroCaps";
   font-size: 1.6vw;
   font-weight: bold;
@@ -189,15 +191,15 @@ input[type=button] {
 
 input[type=button]:focus {
   outline: 0;
-  background-color: var(--button-focus);
+  background-color: var(--list-bg-hover);
 }
 
 input[type=button]:hover {
-  background-color: var(--button-focus);
+  background-color: var(--list-bg-hover);
 }
 
 input[type=button]:active {
-  background-color: var(--button-active);
+  background-color: var(--list-bg-active);
 }
 
 /******

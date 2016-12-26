@@ -2,6 +2,8 @@ var VueRouter = require("vue-router");
 
 var {ipcRenderer} = require("electron");
 
+const {dialog} = require("electron").remote;
+
 var fs = require("fs");
 
 var vm;
@@ -101,6 +103,9 @@ fs.readdir("plugins", function(err, items) {
               [this.matrix_g, this.matrix_h, this.matrix_i]
             ];
             Config.set("colors", matrix);
+          },
+          select_pd: function() {
+            Config.set("playlist_folder", dialog.showOpenDialog({properties: ["openDirectory"]})[0]);
           }
         }
       }

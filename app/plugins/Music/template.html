@@ -1,0 +1,41 @@
+<div style="display: flex; flex-direction: row; height: 100%; align-items: stretch; width: 98vw">
+  <div>
+    <div style="display: flex; flex-direction: row; align-items: stretch; width: 100%">
+       <input style="margin: auto; width: 30%" type="button" value="Prev" v-on:mouseup="prev()"></input>
+       <input style="margin: auto; width: 30%" type="button" v-bind:value="!(playing)? 'Start':'Pause'" v-on:mouseup="toggle_pause()"></input>
+       <input style="margin: auto; width: 30%" type="button" value="Next" v-on:mouseup="next()"></input>
+    </div>
+    <hr style="margin-top: 2vh">
+    <h3 style="margin-top: 1vh; margin-bottom: 0vh">Playlists</h3>
+    <ul style="width: 30vw; height: 70vh; overflow-y: scroll; overflow-x: hidden">
+      <li v-for="(playlist, id) in playlists"
+          v-bind:id="'music-playlist-' + id"
+          v-bind:class="{ hovered: (id == current_hovered), selected: (id == current_selected) }"
+          v-on:mouseup="select_station(id)">{{playlist.name}}</li>
+    </ul>
+  </div>
+  <div class="vertical-separator"></div>
+  <!-- This is the audio vis -->
+  <div style="display: flex; flex-direction: row; align-items: center; height: 100%; justify-content: space-around; align-items: stretch; width: 40vw; margin-left: auto; margin-right: auto;">
+    <!-- 16 -->
+    <div id="music-vis-1" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-2" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-3" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-4" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-5" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-6" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-7" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-8" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-9" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-10" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-11" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-12" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-13" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-14" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-15" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+    <div id="music-vis-16" style="background: var(--blue); width: 2vw; align-self: center; height: 1vw; box-shadow: 0 0 0.6vw var(--blue)" />
+  </div>
+  <!-- <img src="res/galnet.svg" style="width: 50vw" /> -->
+  <span id="music-audio">
+  </span>
+</div>
