@@ -11,6 +11,9 @@ elite-panel is a side panel/companion for Elite Dangerous.
 * Music player
 * Customizable color scheme using an ED color matrix (See Arkku's [hud editor](http://arkku.com/elite/hud_editor/))
 
+## Download ##
+A windows installer is available [here](https://github.com/Rahix/elite-panel/releases/tag/v0.1.0).
+
 ## How to ##
 elite-panel can be controlled by either using a mouse, having the window and focus and using the key controls mentioned below or
 by using the keys with the `CTRL` and `SHIFT` modifiers. This last option does not require the window to be in focus and is best when using the side panel on a second monitor.
