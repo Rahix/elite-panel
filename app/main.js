@@ -9,7 +9,7 @@ function createWindow () {
   win = new BrowserWindow({width: 1024, height: 720, frame: true, title: "elite-panel"})
 
   win.maximize();
-  //win.setMenu(null);
+  win.setMenu(null);
 
   // and load the index.html of the app.
   win.loadURL(`file://${__dirname}/index.html`);
