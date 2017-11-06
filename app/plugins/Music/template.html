@@ -11,7 +11,7 @@
       <li v-for="(playlist, id) in playlists"
           v-bind:id="'music-playlist-' + id"
           v-bind:class="{ hovered: (id == current_hovered), selected: (id == current_selected) }"
-          v-on:mouseup="select_station(id)">{{playlist.name}}</li>
+          v-on:mouseup="select_playlist(id)">{{playlist.name}}</li>
     </ul>
   </div>
   <div class="vertical-separator"></div>
