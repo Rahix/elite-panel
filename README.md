@@ -6,16 +6,16 @@ elite-panel is a side panel/companion for Elite Dangerous.
 ![Screenshot](https://raw.githubusercontent.com/Rahix/elite-panel/master/Screenshot.png)
 
 ## Features ##
-* Youtube player(only Isinona and Obsidian Ant at the moment)
+* Youtube player (only Isinona and Obsidian Ant at the moment)
 * Radio player
 * Music player
 * Customizable color scheme using an ED color matrix (See Arkku's [hud editor](http://arkku.com/elite/hud_editor/))
 
 ## Download ##
-A windows installer is available [here](https://github.com/Rahix/elite-panel/releases/tag/v0.1.0).
+A windows installer is available [here](https://github.com/Rahix/elite-panel/releases/tag/v0.1.1).
 
 ## How to ##
-elite-panel can be controlled by either using a mouse, having the window and focus and using the key controls mentioned below or
+elite-panel can be controlled by either using a mouse, having the window in focus and using the key controls mentioned below or
 by using the keys with the `CTRL` and `SHIFT` modifiers. This last option does not require the window to be in focus and is best when using the side panel on a second monitor.
 Of course these keys can be mapped to joystick controls.
 
@@ -50,4 +50,4 @@ The music player needs a music directory that contains subdirectories, which are
       +-Song 6
 ```
 
-After a playlist was selected, the `SPACE` key will be used for play/pause and the `A` and `D` keys will switch through the playlist's songs.
+After selecting a playlist, use `SPACE` for play/pause and `A` and `D` to switch through the playlist's songs.
