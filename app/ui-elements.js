@@ -17,3 +17,16 @@ Vue.component("elite-checkbox", {
     }
   }
 })
+
+Vue.component("elite-loader", {
+  template: `<object data="res/EDLoader.svg" type="image/svg+xml"></object>`,
+  mounted: function() {
+    var _this = this;
+    this.$el.onload = function() {
+      var cutil = require("./color_utils.js");
+      var matrix = Config.get("colors", [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]);
+      var orange = cutil.color_to_hex(cutil.apply_matrix([1.0, 0.443, 0.0], matrix));
+      _this.$el.contentDocument.children[0].innerHTML = "<style> svg { --orange: " + orange + " } </style>" + _this.$el.contentDocument.children[0].innerHTML;
+    };
+  }
+})

@@ -108,7 +108,7 @@
           animation-delay: 52.63157895ms;
         }
         svg {
-          fill: #ff7100;
+          fill: var(--orange);
         }
 
       ]]>
