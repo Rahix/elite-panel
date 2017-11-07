@@ -55,6 +55,12 @@ function createWindow () {
   })
 }
 
+var is_fullscreen = false;
+ipcMain.on("toggle-fullscreen", function() {
+  is_fullscreen = !is_fullscreen;
+  win.setFullScreen(is_fullscreen);
+})
+
 ipcMain.on("close-app", function() {
   globalShortcut.unregisterAll()
   app.quit();

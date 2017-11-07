@@ -104,6 +104,9 @@ fs.readdir("plugins", function(err, items) {
             ];
             Config.set("colors", matrix);
           },
+          toggle_fullscreen: function() {
+            ipcRenderer.send("toggle-fullscreen");
+          },
           select_pd: function() {
             Config.set("playlist_folder", dialog.showOpenDialog({properties: ["openDirectory"]})[0]);
           }

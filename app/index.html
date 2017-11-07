@@ -74,28 +74,40 @@
       </div>
       <div id="settings-template">
         <div>
-          <h1 style="text-align: center">Colors (Requires Restart)</h1>
-          <table style="width: 100%">
-            <tr>
-              <td> <input type="text" v-model="matrix_a" /> </td>
-              <td> <input type="text" v-model="matrix_b" /> </td>
-              <td> <input type="text" v-model="matrix_c" /> </td>
-            </tr>
-            <tr>
-              <td> <input type="text" v-model="matrix_d" /> </td>
-              <td> <input type="text" v-model="matrix_e" /> </td>
-              <td> <input type="text" v-model="matrix_f" /> </td>
-            </tr>
-            <tr>
-              <td> <input type="text" v-model="matrix_g" /> </td>
-              <td> <input type="text" v-model="matrix_h" /> </td>
-              <td> <input type="text" v-model="matrix_i" /> </td>
-            </tr>
-          </table>
-          <input type="button" value="Apply" v-on:mouseup="apply_colors()"/>
+          <div style="text-align: center">
+            <h1>Fullscreen</h1>
+            <input type="button" value="Toggle Fullscreen" v-on:mouseup="toggle_fullscreen()" />
+          </div>
+          <br />
           <hr />
-          <h1 style="text-align: center">Music</h1>
-          <input type="button" value="Select Directory" v-on:mouseup="select_pd()" />
+          <div style="text-align: center">
+            <h1>Colors (Requires Restart)</h1>
+            <table style="width: 100%">
+              <tr>
+                <td> <input style="text-align: center" type="text" v-model="matrix_a" /> </td>
+                <td> <input style="text-align: center" type="text" v-model="matrix_b" /> </td>
+                <td> <input style="text-align: center" type="text" v-model="matrix_c" /> </td>
+              </tr>
+              <tr>
+                <td> <input style="text-align: center" type="text" v-model="matrix_d" /> </td>
+                <td> <input style="text-align: center" type="text" v-model="matrix_e" /> </td>
+                <td> <input style="text-align: center" type="text" v-model="matrix_f" /> </td>
+              </tr>
+              <tr>
+                <td> <input style="text-align: center" type="text" v-model="matrix_g" /> </td>
+                <td> <input style="text-align: center" type="text" v-model="matrix_h" /> </td>
+                <td> <input style="text-align: center" type="text" v-model="matrix_i" /> </td>
+              </tr>
+            </table>
+            <br />
+            <input type="button" value="Apply" v-on:mouseup="apply_colors()" />
+          </div>
+          <br />
+          <hr />
+          <div style="text-align: center">
+            <h1 style="text-align: center">Music</h1>
+            <input type="button" value="Select Directory" v-on:mouseup="select_pd()" />
+          </div>
         </div>
       </div>
       <div id="close-template">

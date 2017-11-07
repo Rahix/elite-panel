@@ -101,6 +101,14 @@
           this.playing = true;
 
           document.getElementById("music-audio").firstChild.volume = this.volume;
+          // Add callback to start next track on end
+          var next_id = id + 1;
+          if(next_id < this.tracks.length) {
+            var _this = this;
+            document.getElementById("music-audio").firstChild.onended = function() {
+              _this.select_track(next_id);
+            };
+          }
           this.visualize();
         },
         select_playlist: function(id) {

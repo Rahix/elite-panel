@@ -202,6 +202,19 @@ input[type=button]:active {
   background-color: var(--list-bg-active);
 }
 
+/* Text */
+
+input[type=text] {
+  border: 0;
+  padding: 0.5vw 1vw;
+  background-color: var(--list-bg);
+  text-shadow: 0 0 0.1vw var(--orange);
+  color: var(--orange);
+  font-family: "EuroCaps";
+  font-size: 1.6vw;
+  font-weight: bold;
+}
+
 /******
  *LIST*
  ******/
