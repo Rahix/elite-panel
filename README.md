@@ -12,7 +12,7 @@ elite-panel is a side panel/companion for Elite Dangerous.
 * Customizable color scheme using an ED color matrix (See Arkku's [hud editor](http://arkku.com/elite/hud_editor/))
 
 ## Download ##
-A windows installer is available [here](https://github.com/Rahix/elite-panel/releases/tag/v0.1.1).
+A windows installer is available [here](https://github.com/Rahix/elite-panel/releases/tag/v0.2.0).
 
 ## How to ##
 elite-panel can be controlled by either using a mouse, having the window in focus and using the key controls mentioned below or
