@@ -25,6 +25,7 @@
         return {
           playlists: [],
           tracks: [],
+          track_name: "No track selected",
           current_hovered: 0,
           current_selected: -1,
           current_track: 0,
@@ -98,6 +99,7 @@
           var audio = document.getElementById("music-audio");
           audio.innerHTML = "<audio autoplay><source src=\"" + this.tracks[id].file + "\" type=\"audio/mpeg\"></source></audio>";
           this.$root.overlay(this.tracks[id].name, 1);
+          this.track_name = this.tracks[id].name;
           this.playing = true;
 
           document.getElementById("music-audio").firstChild.volume = this.volume;
