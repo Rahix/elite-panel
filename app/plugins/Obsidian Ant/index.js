@@ -4,7 +4,7 @@
     route: "obsidian_ant",
     panel: true,
     component: {
-      template: '<div><elite-loader style="transform: scale(2); position: absolute; padding-left: 37vw; padding-top: 32vh; z-index: -1" /><iframe width="560" height="315" style="width: 100%; height: 90vh" id="obsidian-iframe" src="https://www.youtube.com/embed/videoseries?list=UUtiq6FTXiFKQm-wqMuRijgA&autoplay=1&enablejsapi=1&controls=0" frameborder="0" allowfullscreen></iframe></div>',
+      template: '<div><elite-loader style="transform: scale(2); position: absolute; padding-left: 37vw; padding-top: 32vh; z-index: -1" /><iframe width="560" height="315" style="width: 97.5vw; height: 90vh" id="obsidian-iframe" src="https://www.youtube.com/embed/videoseries?list=UUtiq6FTXiFKQm-wqMuRijgA&autoplay=1&enablejsapi=1&controls=1" frameborder="0" allowfullscreen></iframe></div>',
       mounted: function() {
         this.player = new require("youtube-player")("obsidian-iframe");
         this.playing = true;

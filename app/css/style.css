@@ -213,6 +213,7 @@ input[type=text] {
   font-family: "EuroCaps";
   font-size: 1.6vw;
   font-weight: bold;
+  outline-color: var(--orange);
 }
 
 /******
