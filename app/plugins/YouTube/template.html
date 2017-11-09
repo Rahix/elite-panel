@@ -1,0 +1,13 @@
+<div>
+  <elite-loader style="transform: scale(2); position: absolute; padding-left: 37vw; padding-top: 32vh; z-index: -1" />
+  <iframe width="560" height="315"
+    style="width: 97.5vw; height: 85vh"
+    id="obsidian-iframe"
+    v-bind:src="'https://www.youtube.com/embed/' + src_frag + 'autoplay=1&enablejsapi=1&controls=1'"
+    frameborder="0" allowfullscreen>
+  </iframe>
+  <input style="width: 60vw" type="text" v-model="src_raw" />
+  <elite-checkbox :value="!is_playlist" v-on:mouseup="is_playlist = false" /> Video
+  <elite-checkbox :value="is_playlist" v-on:mouseup="is_playlist = true" /> Playlist
+  <input type="button" value="Play" v-on:mouseup="update()" />
+</div>
