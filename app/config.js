@@ -6,7 +6,7 @@
   }
 
   exports.get = function(key, default_val) {
-    if(!config[key]) {
+    if(!(key in config)) {
       config[key] = default_val;
       localStorage.setItem("elite-panel-config", JSON.stringify(config));
     }
