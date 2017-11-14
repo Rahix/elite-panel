@@ -1,6 +1,6 @@
 {
   "name": "elite-panel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A side panel for Elite Dangerous",
   "main": "main.js",
   "scripts": {
