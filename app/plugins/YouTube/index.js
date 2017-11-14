@@ -14,11 +14,12 @@
       data: function() {
         return {
           src_frag: "videoseries?list=UUtiq6FTXiFKQm-wqMuRijgA&",
-          is_playlist: true,
-          src_raw: "https://www.youtube.com/playlist?list=UUtiq6FTXiFKQm-wqMuRijgA"
+          is_playlist: Config.get("youtube_is_playlist", true),
+          src_raw: Config.get("youtube_url", "https://www.youtube.com/playlist?list=UUtiq6FTXiFKQm-wqMuRijgA")
         }
       },
       mounted: function() {
+        this.update();
         this.player = new require("youtube-player")("obsidian-iframe");
         this.playing = true;
       },
@@ -36,12 +37,14 @@
         update: function() {
           try {
             if(this.is_playlist) {
-              var id = this.src_raw.match("^https?:\\/\\/www\\.youtube\.com\\/playlist\\?list=(.*)")[1];
+              var id = this.src_raw.match(/youtu(?:\.be|be\.com)\/(?:.*list(?:\/|=)|(?:.*\/)?)([a-zA-Z0-9-_]+)/)[1];
               this.src_frag = "videoseries?list=" + id + "&";
             } else {
-              var id = this.src_raw.match("^https?:\\/\\/www\\.youtube\.com\\/watch\\?v=(.*)")[1];
+              var id = this.src_raw.match(/youtu(?:\.be|be\.com)\/(?:.*v(?:\/|=)|(?:.*\/)?)([a-zA-Z0-9-_]+)/)[1];
               this.src_frag = id + "?";
             }
+            Config.set("youtube_url", this.src_raw);
+            Config.set("youtube_is_playlist", this.is_playlist);
           } catch(err) {
               this.$root.overlay("Failed to parse youtube url", 1);
           }
